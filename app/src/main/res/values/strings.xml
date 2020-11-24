@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KATRIPS</string>
+    <string name="background">background</string>
+    <string name="backbutton">backbutton</string>
 </resources>
