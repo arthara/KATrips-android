@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">KATRIPS</string>
+    <string name="landing_title">Pesan Tiket Kereta-mu</string>
+    <string name="dari">Dari</string>
+    <string name="ke">Ke</string>
+    <string name="tgl_brng">Tanggal Keberangkatan</string>
+    <string name="tgl_plg">Tanggal Pulang</string>
+    <string name="l_dewasa">Penumpang Dewasa</string>
+    <string name="l_bayi">Penumpang Bayi</string>
+    <string-array name="list_stasiun">
+        <item>Stasiun A</item>
+        <item>Stasiun B</item>
+        <item>Stasiun C</item>
+        <item>Stasiun D</item>
+    </string-array>
+    <string-array name="list_tglbrg">
+        <item>Hari, 30 Desember 202X</item>
+        <item>Stasiun B</item>
+        <item>Stasiun C</item>
+        <item>Stasiun D</item>
+    </string-array>
+    <string-array name="list_tglplg">
+        <item>Hari, 31 Desember 202X</item>
+        <item>Stasiun B</item>
+        <item>Stasiun C</item>
+        <item>Stasiun D</item>
+    </string-array>
+    <string-array name="list_dewasa">
+        <item>0 Dewasa</item>
+        <item>1 Dewasa</item>
+        <item>Stasiun C</item>
+        <item>Stasiun D</item>
+    </string-array>
+    <string-array name="list_bayi">
+        <item>0 Bayi</item>
+        <item>1 Bayi</item>
+        <item>Stasiun C</item>
+        <item>Stasiun D</item>
+    </string-array>
 </resources>

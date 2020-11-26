@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".InputJadwalJmlhBayi"></activity>
+        <activity android:name=".InputJadwalJmlhDewasa" />
+        <activity android:name=".InputJadwalTglPulang" />
+        <activity android:name=".InputJadwalTglBerangkat" />
+        <activity android:name=".InputJadwalKe" />
+        <activity android:name=".InputJadwalDari" />
+        <activity android:name=".InputJadwal" />
+        <activity android:name=".NavigationBar" />
+        <activity android:name=".LandingPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
