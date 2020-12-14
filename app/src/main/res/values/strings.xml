@@ -4,4 +4,11 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="log_in_btn">LOG IN</string>
+    <string name="landing_title">Pesan Tiket Kereta-mu</string>
+    <string name="dari">Dari</string>
+    <string name="ke">Ke</string>
+    <string name="tgl_brng">Tanggal Keberangkatan</string>
+    <string name="tgl_plg">Tanggal Pulang</string>
+    <string name="l_dewasa">Penumpang Dewasa</string>
+    <string name="l_bayi">Penumpang Bayi</string>
 </resources>

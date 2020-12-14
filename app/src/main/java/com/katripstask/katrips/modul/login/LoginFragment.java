@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.katripstask.katrips.R;
 import com.katripstask.katrips.base.BaseFragment;
+import com.katripstask.katrips.modul.caritiket.CariTiketActivity;
 import com.katripstask.katrips.utils.UtilProvider;
 
 public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Presenter> implements LoginContract.View {
@@ -33,6 +34,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(activity, "Clicked Button", Toast.LENGTH_SHORT).show();
                 setBtnLoginOnClick();
             }
         });
@@ -41,15 +43,16 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     }
 
     private void setBtnLoginOnClick(){
+
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         mPresenter.performLogin(email, password);
     }
 
     @Override
-    public void loginSuccess() {
-        Intent intent = new Intent(activity, LoginActivity.class);
-        Toast.makeText(activity, "Login CUks", Toast.LENGTH_SHORT).show();
+    public void loginSuccess(String token) {
+        Intent intent = new Intent(activity, CariTiketActivity.class);
+        Toast.makeText(activity, "Login Berhasil", Toast.LENGTH_SHORT).show();
         startActivity(intent);
         activity.finish();
     }

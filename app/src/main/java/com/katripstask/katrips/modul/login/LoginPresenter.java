@@ -1,11 +1,10 @@
 package com.katripstask.katrips.modul.login;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.katripstask.katrips.callback.RequestCallback;
 import com.katripstask.katrips.response.LoginResponse;
+import com.katripstask.katrips.response.StasiunResponse;
 
 public class LoginPresenter implements LoginContract.Presenter {
     private final LoginContract.View view;
@@ -23,12 +22,12 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void performLogin(String email, String password) {
-
         interactor.requestLogin(email, password, new RequestCallback<LoginResponse>() {
             @Override
-            public void requestSuccess(LoginResponse data) {
-                view.loginSuccess();
+            public StasiunResponse requestSuccess(LoginResponse data) {
+                view.loginSuccess(data.access_token);
                 interactor.saveToken(data.access_token);
+                return null;
             }
 
             @Override

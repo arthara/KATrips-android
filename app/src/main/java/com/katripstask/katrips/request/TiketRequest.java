@@ -1,28 +1,28 @@
-package com.katripstask.katrips.model;
+package com.katripstask.katrips.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Tiket {
-    @SerializedName("id")
+public class TiketRequest {
+    @SerializedName("tiket_id")
     @Expose
     private String id;
-    @SerializedName("waktuBerangkat")
+    @SerializedName("waktu_berangkat")
     @Expose
     private String waktuBerangkat;
-    @SerializedName("waktuTiba")
+    @SerializedName("waktu_tiba")
     @Expose
     private String waktuTiba;
     @SerializedName("harga")
     @Expose
     private int harga;
-    @SerializedName("statusTiket")
+    @SerializedName("status_tiket")
     @Expose
     private String statusTiket;
-    @SerializedName("lokasiBerangkat")
+    @SerializedName("lokasi_berangkat")
     @Expose
     private String lokasiBerangkat;
-    @SerializedName("lokasiTiba")
+    @SerializedName("lokasi_tiba")
     @Expose
     private String lokasiTiba;
     @SerializedName("kereta")
@@ -31,9 +31,20 @@ public class Tiket {
     @SerializedName("kelas")
     @Expose
     private String kelas;
-    @SerializedName("noKursi")
+    @SerializedName("no_kursi")
     @Expose
     private String noKursi;
+    @SerializedName("gerbong_kode")
+    @Expose
+    private String kodeGerbong;
+
+    public String getKodeGerbong() {
+        return kodeGerbong;
+    }
+
+    public void setKodeGerbong(String kodeGerbong) {
+        this.kodeGerbong = kodeGerbong;
+    }
 
     public String getId() {
         return id;

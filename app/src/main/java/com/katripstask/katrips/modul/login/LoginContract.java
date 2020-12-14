@@ -7,7 +7,7 @@ import com.katripstask.katrips.response.LoginResponse;
 
 public interface LoginContract {
     interface View extends BaseView<Presenter> {
-        void loginSuccess();
+        void loginSuccess(String token);
         void loginFailed(String failedMsg);
     }
 
