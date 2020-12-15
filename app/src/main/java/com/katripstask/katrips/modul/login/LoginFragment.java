@@ -34,7 +34,6 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "Clicked Button", Toast.LENGTH_SHORT).show();
                 setBtnLoginOnClick();
             }
         });

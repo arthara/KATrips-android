@@ -2,7 +2,9 @@ package com.katripstask.katrips.modul.caritiket;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.katripstask.katrips.MainActivity;
@@ -42,6 +45,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     FloatingActionButton btn_cariTiket;
     EditText etTglBerangkat;
     Calendar tglBerangkat;
+    int idStasiunAwal, idStasiunTujuan;
     DatePickerDialog.OnDateSetListener date;
 
     @Nullable
@@ -52,8 +56,30 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         mPresenter = new CariTiketPresenter(this, new CariTiketInteractor(UtilProvider.getSharedPrefManager()));
         mPresenter.requestListStasiun();
         initView();
-        setTglDefault();
 
+        // Edit Text Date Picker Listener
+        final Calendar mCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                mCalendar.set(Calendar.YEAR, year);
+                mCalendar.set(Calendar.MONTH, month);
+                mCalendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel(mCalendar);
+                tglBerangkat = mCalendar;
+            }
+        };
+        etTglBerangkat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(activity, date,
+                        mCalendar.get(Calendar.YEAR),
+                        mCalendar.get(Calendar.MONTH),
+                        mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        // Button cari tiket listener
         btn_cariTiket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,42 +87,43 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
             }
         });
 
+        // Stasiun Awal Listener
+        spnrStasiunDari.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Stasiun awal = (Stasiun) adapterView.getSelectedItem();
+                idStasiunAwal = awal.getStasiunId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Log.d("input", "Nothing Selected");
+            }
+        });
+
+        // Spinner Tujuan Listener
+        spnrStasiunKe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Stasiun tujuan = (Stasiun) adapterView.getSelectedItem();
+                idStasiunTujuan = tujuan.getStasiunId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Log.d("input", "Nothing Selected");
+            }
+        });
+
         return fragmentView;
     }
 
     private void btnCariTiketAction(){
-        final int[] stasiunAwalId = new int[1];
-        final int[] stasiunTujuanId = new int[1];
-
-        spnrStasiunDari.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Stasiun stasiunDari = (Stasiun) adapterView.getSelectedItem();
-                stasiunAwalId[0] = stasiunDari.getStasiunId();
-            }
-        });
-
-        spnrStasiunKe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Stasiun stasiunTujuan = (Stasiun) adapterView.getSelectedItem();
-                stasiunTujuanId[0] = stasiunTujuan.getStasiunId();
-            }
-        });
-
-        etTglBerangkat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(activity, date,
-                        tglBerangkat.get(Calendar.YEAR),
-                        tglBerangkat.get(Calendar.MONTH),
-                        tglBerangkat.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-
-        mPresenter.requestListPerjalanan(stasiunAwalId[0], stasiunTujuanId[0], dateFormat.format(tglBerangkat.getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Log.d("input", "Stasiun Awal : " + idStasiunAwal);
+        Log.d("input", "Stasiun Tujuan : " + idStasiunTujuan);
+        Log.d("input", "Tgl Berangkat : " + dateFormat.format(tglBerangkat.getTime()));
+        //mPresenter.requestListPerjalanan(stasiunAwalId[0], stasiunTujuanId[0], dateFormat.format(tglBerangkat.getTime()));
     }
 
     private void initView(){
@@ -105,46 +132,31 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         spnrJmlhDws = fragmentView.findViewById(R.id.list_jmlh_dewasa);
         spnrJmlhBy = fragmentView.findViewById(R.id.list_jmlh_bayi);
         btn_cariTiket = fragmentView.findViewById(R.id.btn_cariTiket);
-        etTglBerangkat = (EditText) fragmentView.findViewById(R.id.et_tglBerangkat);
+        etTglBerangkat = fragmentView.findViewById(R.id.et_tglBerangkat);
         tglBerangkat  = Calendar.getInstance();
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                tglBerangkat.set(Calendar.YEAR, year);
-                tglBerangkat.set(Calendar.MONTH, month);
-                tglBerangkat.set(Calendar.DAY_OF_MONTH, day);
-                updateLabel();
-            }
-        };
+        setSpinnerPenumpang();
     }
 
-    private void updateLabel(){
-        String myFormat = "yyyy/mm/dd"; //In which you need put here
+    private void updateLabel(Calendar mCalendar){
+        String myFormat = "yyyy-mm-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        etTglBerangkat.setText("IKI TANGGAL COK");
+        etTglBerangkat.setText(sdf.format(mCalendar.getTime()));
     }
 
-    private void setTglDefault(){
-        date = new DatePickerDialog.OnDateSetListener(){
-            @Override
-            public void onDateSet(DatePicker datePicker, int tahun, int bulan, int tanggal) {
-                tglBerangkat.set(Calendar.YEAR, tahun);
-                tglBerangkat.set(Calendar.MONTH, bulan);
-                tglBerangkat.set(Calendar.DAY_OF_MONTH, tanggal);
-
-                String format = "dd/MM/yy";
-                SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.ENGLISH);
-                TimeZone tz = TimeZone.getTimeZone("Asia/Jakarta");
-                sdf.setTimeZone(tz);
-                etTglBerangkat.setText(sdf.format(tglBerangkat.getTime()));
-            }
-        };
+    private void setSpinnerPenumpang(){
+        Integer[] batasPenumpang = new Integer[]{1, 2, 3, 4, 5};
+        ArrayAdapter<Integer> penumpangDwsAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, batasPenumpang);
+        ArrayAdapter<Integer> penumpangBayiAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, batasPenumpang);
+        penumpangBayiAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        penumpangDwsAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spnrJmlhBy.setAdapter(penumpangBayiAdapter);
+        spnrJmlhDws.setAdapter(penumpangDwsAdapter);
     }
 
     @Override
     public void setSpinnerStasiun(List<Stasiun> stasiuns) {
-        ArrayAdapter<Stasiun> stasiunAdapter = new ArrayAdapter<Stasiun>(activity, android.R.layout.simple_spinner_item, stasiuns);
+        ArrayAdapter<Stasiun> stasiunAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, stasiuns);
         stasiunAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnrStasiunKe.setAdapter(stasiunAdapter);
         spnrStasiunDari.setAdapter(stasiunAdapter);
