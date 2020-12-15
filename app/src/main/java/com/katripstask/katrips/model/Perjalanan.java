@@ -1,12 +1,21 @@
 package com.katripstask.katrips.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Perjalanan {
+    @SerializedName("waktu_berangkat")
     private String waktuBerangkat;
+    @SerializedName("waktu_tiba")
     private String waktuTiba;
+    @SerializedName("keretakelas_id")
     private String keretaKelasId;
+    @SerializedName("harga")
     private int harga;
+    @SerializedName("lokasi_berangkat_id")
     private int lokasiBerangkatId;
+    @SerializedName("lokasi_tiba_id")
     private int lokasiTibaId;
+    @SerializedName("penumpang_tersedia")
     private int penumpangTersedia;
 
     public Perjalanan(String waktuBerangkat, String waktuTiba, String keretaKelasId, int harga, int lokasiBerangkatId, int lokasiTibaId, int penumpangTersedia) {

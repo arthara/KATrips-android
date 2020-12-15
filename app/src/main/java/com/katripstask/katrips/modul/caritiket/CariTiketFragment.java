@@ -24,11 +24,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.katripstask.katrips.MainActivity;
 import com.katripstask.katrips.R;
 import com.katripstask.katrips.base.BaseFragment;
+import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.model.Stasiun;
 import com.katripstask.katrips.modul.login.LoginActivity;
 import com.katripstask.katrips.modul.login.LoginContract;
 import com.katripstask.katrips.modul.login.LoginInteractor;
 import com.katripstask.katrips.modul.login.LoginPresenter;
+import com.katripstask.katrips.request.PerjalananRequest;
 import com.katripstask.katrips.response.FindedTiketResponse;
 import com.katripstask.katrips.utils.UtilProvider;
 
@@ -45,7 +47,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     FloatingActionButton btn_cariTiket;
     EditText etTglBerangkat;
     Calendar tglBerangkat;
-    int idStasiunAwal, idStasiunTujuan;
+    int idStasiunAwal, idStasiunTujuan, jmlhPenumpangDws, jmlhPenumpangBy;
     DatePickerDialog.OnDateSetListener date;
 
     @Nullable
@@ -115,15 +117,40 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
             }
         });
 
+        // Spinner Penumpang Dewasa
+        spnrJmlhDws.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                jmlhPenumpangDws = (int) adapterView.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        // Spinner Penumpang Bayi
+        spnrJmlhBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                jmlhPenumpangBy = (int) adapterView.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return fragmentView;
     }
 
     private void btnCariTiketAction(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Log.d("input", "Stasiun Awal : " + idStasiunAwal);
-        Log.d("input", "Stasiun Tujuan : " + idStasiunTujuan);
-        Log.d("input", "Tgl Berangkat : " + dateFormat.format(tglBerangkat.getTime()));
-        //mPresenter.requestListPerjalanan(stasiunAwalId[0], stasiunTujuanId[0], dateFormat.format(tglBerangkat.getTime()));
+        PerjalananRequest perjalananRequest = new PerjalananRequest(dateFormat.format(tglBerangkat.getTime()), idStasiunAwal, idStasiunTujuan, jmlhPenumpangDws, jmlhPenumpangBy);
+        mPresenter.requestListPerjalanan(perjalananRequest);
+        //mPresenter.requestListPerjalanan(idStasiunAwal, idStasiunTujuan, dateFormat.format(tglBerangkat.getTime()));
     }
 
     private void initView(){
@@ -163,10 +190,11 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     }
 
     @Override
-    public void tiketDitemukan() {
-        Intent intent = new Intent(activity, MainActivity.class);
-        startActivity(intent);
-        activity.finish();
+    public void tiketDitemukan(List<Perjalanan> perjalanans) {
+        Toast.makeText(activity, "Tiket Ditemukan", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(activity, MainActivity.class);
+//        startActivity(intent);
+//        activity.finish();
     }
 
     @Override

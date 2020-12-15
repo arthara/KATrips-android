@@ -13,15 +13,19 @@ public class PerjalananRequest {
     @SerializedName("lokasi_tiba_id")
     @Expose
     private int lokasiTibaId;
-    @SerializedName("jmlh_penumpang")
+    @SerializedName("jmlh_penumpang_dewasa")
     @Expose
-    private int jmlhPenumpang;
+    private int jmlhPenumpangDws;
+    @SerializedName("jmlh_penumpang_bayi")
+    @Expose
+    private int jmlhPenumpangBy;
 
-    public PerjalananRequest(String tglBerangkat, int lokasiBerangkatId, int lokasiTibaId, int jmlhPenumpang) {
+    public PerjalananRequest(String tglBerangkat, int lokasiBerangkatId, int lokasiTibaId, int jmlhPenumpangDws, int jmlhPenumpangBy) {
         this.tglBerangkat = tglBerangkat;
         this.lokasiBerangkatId = lokasiBerangkatId;
         this.lokasiTibaId = lokasiTibaId;
-        this.jmlhPenumpang = jmlhPenumpang;
+        this.jmlhPenumpangDws = jmlhPenumpangDws;
+        this.jmlhPenumpangBy = jmlhPenumpangBy;
     }
 
     public String getTglBerangkat() {
@@ -48,11 +52,19 @@ public class PerjalananRequest {
         this.lokasiTibaId = lokasiTibaId;
     }
 
-    public int getJmlhPenumpang() {
-        return jmlhPenumpang;
+    public int getJmlhPenumpangDws() {
+        return jmlhPenumpangDws;
     }
 
-    public void setJmlhPenumpang(int jmlhPenumpang) {
-        this.jmlhPenumpang = jmlhPenumpang;
+    public void setJmlhPenumpangDws(int jmlhPenumpangDws) {
+        this.jmlhPenumpangDws = jmlhPenumpangDws;
+    }
+
+    public int getJmlhPenumpangBy() {
+        return jmlhPenumpangBy;
+    }
+
+    public void setJmlhPenumpangBy(int jmlhPenumpangBy) {
+        this.jmlhPenumpangBy = jmlhPenumpangBy;
     }
 }

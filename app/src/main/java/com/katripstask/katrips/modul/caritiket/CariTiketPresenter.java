@@ -4,9 +4,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.katripstask.katrips.callback.RequestCallback;
+import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.model.Stasiun;
+import com.katripstask.katrips.request.PerjalananRequest;
 import com.katripstask.katrips.request.TiketRequest;
 import com.katripstask.katrips.response.FindedTiketResponse;
+import com.katripstask.katrips.response.PerjalananResponse;
 import com.katripstask.katrips.response.StasiunResponse;
 
 import java.util.Date;
@@ -25,9 +28,8 @@ public class CariTiketPresenter implements CariTiketContract.Presenter {
     public void requestListStasiun() {
         interactor.getAllStasiun(new RequestCallback<List<Stasiun>>() {
             @Override
-            public StasiunResponse requestSuccess(List<Stasiun> data) {
+            public void requestSuccess(List<Stasiun> data) {
                 view.setSpinnerStasiun(data);
-                return null;
             }
 
             @Override
@@ -38,8 +40,18 @@ public class CariTiketPresenter implements CariTiketContract.Presenter {
     }
 
     @Override
-    public void requestListPerjalanan(int lokasiBrngktId, int lokasiTbId, String tglBerangkat) {
+    public void requestListPerjalanan(PerjalananRequest perjalananRequest) {
+        interactor.requestPerjalanan(perjalananRequest, new RequestCallback<PerjalananResponse>() {
+            @Override
+            public void requestSuccess(PerjalananResponse data) {
+                view.tiketDitemukan(data.getPerjalanans());
+            }
 
+            @Override
+            public void requestFailed(String failedMsg) {
+                view.tiketTidakDitemukan(failedMsg);
+            }
+        });
     }
 
     @Override
