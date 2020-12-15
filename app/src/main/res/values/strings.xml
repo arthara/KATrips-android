@@ -11,4 +11,7 @@
     <string name="tgl_plg">Tanggal Pulang</string>
     <string name="l_dewasa">Penumpang Dewasa</string>
     <string name="l_bayi">Penumpang Bayi</string>
+    <string name="ket_name">NAMA USER</string>
+    <string name="email">ALAMAT EMAIL</string>
+    <string name="number">NO KTP</string>
 </resources>
