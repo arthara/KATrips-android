@@ -14,4 +14,14 @@
     <string name="ket_name">NAMA USER</string>
     <string name="email">ALAMAT EMAIL</string>
     <string name="number">NO KTP</string>
+    <string name="tv_stasiun">Stasiun A</string>
+    <string name="tv_jamBerangkat">10.30 PM</string>
+    <string name="tv_namaKereta">Mutiara Timur</string>
+    <string name="iv_imageDariKe">imageDariKe</string>
+    <string name="tv_keretaKelas">EKONOMI</string>
+    <string name="tv_durasiPerjalanan">2 JAM 15 MENIT</string>
+    <string name="tv_cthHarga">Rp. 250.000</string>
+    <string name="icon_dari_ke">icon_dari_ke</string>
+    <string name="tv_kodeStasiun">SGU</string>
+    <string name="desc_icon_back">icon_back</string>
 </resources>

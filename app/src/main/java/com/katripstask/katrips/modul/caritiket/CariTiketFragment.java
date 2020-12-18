@@ -30,10 +30,12 @@ import com.katripstask.katrips.modul.login.LoginActivity;
 import com.katripstask.katrips.modul.login.LoginContract;
 import com.katripstask.katrips.modul.login.LoginInteractor;
 import com.katripstask.katrips.modul.login.LoginPresenter;
+import com.katripstask.katrips.modul.pilihtiket.PilihTiketActivity;
 import com.katripstask.katrips.request.PerjalananRequest;
 import com.katripstask.katrips.response.FindedTiketResponse;
 import com.katripstask.katrips.utils.UtilProvider;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -192,9 +194,10 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     @Override
     public void tiketDitemukan(List<Perjalanan> perjalanans) {
         Toast.makeText(activity, "Tiket Ditemukan", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(activity, MainActivity.class);
-//        startActivity(intent);
-//        activity.finish();
+        Intent intent = new Intent(activity, PilihTiketActivity.class);
+        intent.putExtra("listPerjalanan", (Serializable) perjalanans);
+        startActivity(intent);
+        activity.finish();
     }
 
     @Override

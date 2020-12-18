@@ -54,7 +54,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_asal"
+                android:id="@+id/tv_stasiunTujuan"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="290dp"
@@ -111,7 +111,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_tujuan"
+                android:id="@+id/tv_stasiunAwal"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="30dp"

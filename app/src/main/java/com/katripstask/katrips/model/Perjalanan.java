@@ -2,7 +2,9 @@ package com.katripstask.katrips.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Perjalanan {
+import java.io.Serializable;
+
+public class Perjalanan implements Serializable {
     @SerializedName("waktu_berangkat")
     private String waktuBerangkat;
     @SerializedName("waktu_tiba")

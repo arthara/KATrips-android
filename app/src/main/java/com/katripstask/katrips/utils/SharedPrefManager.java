@@ -2,6 +2,7 @@ package com.katripstask.katrips.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SharedPrefManager {
     //private String spToken;

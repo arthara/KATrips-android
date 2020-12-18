@@ -38,6 +38,9 @@ public class LoginInteractor implements LoginContract.Interactor {
 
                     @Override
                     public void onError(ANError anError) {
+//                        Log.d("cek", String.valueOf(anError.getErrorCode()));
+//                        Log.d("cek", anError.getErrorBody());
+//                        Log.d("cek", anError.getErrorDetail());
                         requestCallback.requestFailed(anError.getMessage().toString());
                     }
                 });
