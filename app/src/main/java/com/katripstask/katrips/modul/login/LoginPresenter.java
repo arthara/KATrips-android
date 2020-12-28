@@ -27,6 +27,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             public void requestSuccess(LoginResponse data) {
                 view.loginSuccess(data.access_token);
                 interactor.saveToken(data.access_token);
+                interactor.saveUser(data.user);
             }
 
             @Override

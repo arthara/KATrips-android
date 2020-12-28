@@ -24,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
-                android:id="@+id/imageBack"
+                android:id="@+id/iv_backBtn"
                 android:layout_width="30dp"
                 android:layout_height="35dp"
                 android:src="@drawable/group_5"
@@ -74,7 +74,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/pp_ttiba_time"
+                    android:id="@+id/tv_waktuTiba"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="290dp"
@@ -93,7 +93,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/harga_tiket"
+                    android:id="@+id/tv_harga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="290dp"
@@ -131,7 +131,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/pp_keberangkat_time"
+                    android:id="@+id/tv_waktuBerangkat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="42dp"
@@ -150,7 +150,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/nama_kereta"
+                    android:id="@+id/tv_kereta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="42dp"
@@ -169,7 +169,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/durasi_perjalanan"
+                    android:id="@+id/tv_durasiPerjalanan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="166dp"
@@ -188,7 +188,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/kelas_kereta"
+                    android:id="@+id/tv_kelas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="166dp"
@@ -435,7 +435,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/nama_user"
+                    android:id="@+id/tv_namaUser"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginRight="30dp"
@@ -457,7 +457,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/tv_email"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginRight="30dp"
@@ -529,7 +529,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/ktp"
+                    android:id="@+id/tv_noKtp"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginRight="30dp"
@@ -550,7 +550,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/nama_lengkap"
+                    android:id="@+id/tv_namaPenumpang"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginRight="30dp"
@@ -691,7 +691,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/total_harga"
+                    android:id="@+id/tv_totalHarga"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginRight="30dp"

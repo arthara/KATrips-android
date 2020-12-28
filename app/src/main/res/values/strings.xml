@@ -24,4 +24,24 @@
     <string name="icon_dari_ke">icon_dari_ke</string>
     <string name="tv_kodeStasiun">SGU</string>
     <string name="desc_icon_back">icon_back</string>
+    <string name="tv_ex_todo">TODO</string>
+    <string name="tv_ex_kategoriDewasa">Kategori : Dewasa</string>
+    <string name="tv_hint_namaLengkap">NAMA LENGKAP</string>
+    <string name="tv_ex_ml">ML</string>
+    <string name="tv_cth_jamTiba">01.45 AM</string>
+    <string name="tv_ex_harga">Rp. 250.000</string>
+    <string name="tv_hint_email">ALAMAT EMAIL</string>
+    <string name="tv_ex_stasiunAsal">SUB</string>
+    <string name="tv_ex_jamBrngkt">10.30 PM</string>
+    <string name="tv_ex_kereta">Mutiara Timur</string>
+    <string name="tv_ex_kelas">EKONOMI</string>
+    <string name="tv_ex_totalHarga">Rp 500.000</string>
+    <string name="tv_ex_detailHarga">2 x 250.000</string>
+    <string name="cd_btn_home">btn_home</string>
+    <string name="cd_btn_setting">btn_setting</string>
+    <string name="tv_ex_durasiPerjalanan">2 JAM 15 MENIT</string>
+    <string name="dc_detailpenumpang">detailPenumpang</string>
+    <string name="dc_tv_detailharga">tv_detailHarga</string>
+    <string name="dc_group_detailpemesan">group_detailPemesan</string>
+    <string name="dc_bardownbox">BardownBox</string>
 </resources>

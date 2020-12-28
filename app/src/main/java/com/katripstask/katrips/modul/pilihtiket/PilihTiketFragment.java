@@ -20,8 +20,10 @@ import com.katripstask.katrips.adapter.PerjalananAdapter;
 import com.katripstask.katrips.base.BaseFragment;
 import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.modul.caritiket.CariTiketActivity;
+import com.katripstask.katrips.modul.inputpesanan.InputPesananActivity;
 import com.katripstask.katrips.utils.UtilProvider;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTiketContract.Presenter> implements PilihTiketContract.View {
@@ -43,8 +45,8 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
         perjalananAdapter.setOnItemClickListener(new PerjalananAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                int harga = perjalanans.get(position).getHarga();
-                Toast.makeText(activity, "Harga terpilih : " + harga, Toast.LENGTH_SHORT).show();
+                Perjalanan perjalanan = perjalanans.get(position);
+                mPresenter.tiketDipilih(perjalanan);
             }
         });
 
@@ -67,10 +69,9 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     }
 
     @Override
-    public void pesanTiket(int idPerjalanan) {
-        Intent intent = new Intent(activity, MainActivity.class); //Harusnya ke InputPesanan
-        Log.d("cek", "Halo");
-        intent.putExtra("idPerjalanan", idPerjalanan);
+    public void pesanTiket(Perjalanan perjalanan) {
+        Intent intent = new Intent(activity, InputPesananActivity.class); //Harusnya ke InputPesanan
+        intent.putExtra("perjalanan", (Serializable) perjalanan);
         startActivity(intent);
         activity.finish();
     }

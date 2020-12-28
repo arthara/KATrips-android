@@ -12,12 +12,12 @@ import java.util.List;
 
 public interface PilihTiketContract {
     interface View extends BaseView<Presenter> {
-        void pesanTiket(int idPerjalanan);
+        void pesanTiket(Perjalanan perjalanan);
         void redirectToCariTiket();
     }
 
     interface Presenter extends BasePresenter{
-        void tiketDipilih(int idPerjalanan);
+        void tiketDipilih(Perjalanan perjalanan);
         void kembaliKeCariTiket();
     }
 

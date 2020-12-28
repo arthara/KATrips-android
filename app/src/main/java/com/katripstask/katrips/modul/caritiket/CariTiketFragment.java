@@ -167,7 +167,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     }
 
     private void updateLabel(Calendar mCalendar){
-        String myFormat = "yyyy-mm-dd"; //In which you need put here
+        String myFormat = "yyyy-m-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         etTglBerangkat.setText(sdf.format(mCalendar.getTime()));
@@ -175,8 +175,9 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
 
     private void setSpinnerPenumpang(){
         Integer[] batasPenumpang = new Integer[]{1, 2, 3, 4, 5};
+        Integer[] batasPenumpangBayi = new Integer[]{0, 1};
         ArrayAdapter<Integer> penumpangDwsAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, batasPenumpang);
-        ArrayAdapter<Integer> penumpangBayiAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, batasPenumpang);
+        ArrayAdapter<Integer> penumpangBayiAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, batasPenumpangBayi);
         penumpangBayiAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         penumpangDwsAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnrJmlhBy.setAdapter(penumpangBayiAdapter);

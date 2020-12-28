@@ -9,6 +9,7 @@
         android:id="@+id/cv_perjalananItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardElevation="@dimen/cardview_compat_inset_shadow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
                     android:textStyle="normal" />
 
                 <TextView
-                    android:id="@+id/nama_kereta"
+                    android:id="@+id/tv_kereta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -82,7 +83,7 @@
                     android:src="@drawable/icon_darike" />
 
                 <TextView
-                    android:id="@+id/kelas_kereta"
+                    android:id="@+id/tv_kelas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -93,7 +94,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/durasi_perjalanan"
+                    android:id="@+id/tv_durasiPerjalanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -136,7 +137,7 @@
                     android:textStyle="normal" />
 
                 <TextView
-                    android:id="@+id/harga_tiket"
+                    android:id="@+id/tv_harga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

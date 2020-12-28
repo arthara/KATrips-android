@@ -3,6 +3,7 @@ package com.katripstask.katrips.modul.login;
 import com.katripstask.katrips.base.BasePresenter;
 import com.katripstask.katrips.base.BaseView;
 import com.katripstask.katrips.callback.RequestCallback;
+import com.katripstask.katrips.model.User;
 import com.katripstask.katrips.response.LoginResponse;
 
 public interface LoginContract {
@@ -18,5 +19,6 @@ public interface LoginContract {
     interface Interactor{
         void requestLogin(String email, String password, RequestCallback<LoginResponse> requestCallback);
         void saveToken(String token);
+        void saveUser(User user);
     }
 }

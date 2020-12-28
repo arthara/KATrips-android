@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".modul.caritiket.CariTiketActivity"></activity>
         <activity android:name=".modul.pilihtiket.PilihTiketActivity"></activity>
+        <activity android:name=".modul.inputpesanan.InputPesananActivity"></activity>
         <activity android:name=".MainActivity"></activity>
     </application>
 

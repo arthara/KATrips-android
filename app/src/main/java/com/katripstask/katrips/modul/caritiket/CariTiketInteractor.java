@@ -70,7 +70,7 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
 
                     @Override
                     public void onError(ANError anError) {
-                        requestCallback.requestFailed(anError.getErrorBody());
+                        requestCallback.requestFailed(anError.getErrorDetail());
                     }
                 });
     }

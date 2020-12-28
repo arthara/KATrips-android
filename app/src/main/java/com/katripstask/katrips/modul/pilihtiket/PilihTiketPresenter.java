@@ -1,6 +1,7 @@
 package com.katripstask.katrips.modul.pilihtiket;
 
 import com.katripstask.katrips.callback.RequestCallback;
+import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.model.Stasiun;
 import com.katripstask.katrips.modul.caritiket.CariTiketContract;
 import com.katripstask.katrips.request.PerjalananRequest;
@@ -23,8 +24,8 @@ public class PilihTiketPresenter implements PilihTiketContract.Presenter {
     }
 
     @Override
-    public void tiketDipilih(int idPerjalanan) {
-        view.pesanTiket(idPerjalanan);
+    public void tiketDipilih(Perjalanan perjalanan) {
+        view.pesanTiket(perjalanan);
     }
 
     @Override

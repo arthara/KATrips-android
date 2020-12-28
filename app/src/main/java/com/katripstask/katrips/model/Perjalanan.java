@@ -3,55 +3,83 @@ package com.katripstask.katrips.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Perjalanan implements Serializable {
+    private int id;
     @SerializedName("waktu_berangkat")
     private String waktuBerangkat;
     @SerializedName("waktu_tiba")
     private String waktuTiba;
-    @SerializedName("keretakelas_id")
-    private String keretaKelasId;
+    @SerializedName("kelas")
+    private String kelas;
+    @SerializedName("kereta")
+    private String kereta;
     @SerializedName("harga")
     private int harga;
-    @SerializedName("lokasi_berangkat_id")
-    private int lokasiBerangkatId;
-    @SerializedName("lokasi_tiba_id")
-    private int lokasiTibaId;
+    @SerializedName("lokasi_berangkat")
+    private String lokasiBerangkat;
+    @SerializedName("lokasi_tiba")
+    private String lokasiTiba;
     @SerializedName("penumpang_tersedia")
     private int penumpangTersedia;
 
-    public Perjalanan(String waktuBerangkat, String waktuTiba, String keretaKelasId, int harga, int lokasiBerangkatId, int lokasiTibaId, int penumpangTersedia) {
+    public Perjalanan(int id, String waktuBerangkat, String waktuTiba, String kelas, String kereta, int harga, String lokasiBerangkat, String lokasiTiba, int penumpangTersedia) {
+        this.id = id;
         this.waktuBerangkat = waktuBerangkat;
         this.waktuTiba = waktuTiba;
-        this.keretaKelasId = keretaKelasId;
+        this.kelas = kelas;
+        this.kereta = kereta;
         this.harga = harga;
-        this.lokasiBerangkatId = lokasiBerangkatId;
-        this.lokasiTibaId = lokasiTibaId;
+        this.lokasiBerangkat = lokasiBerangkat;
+        this.lokasiTiba = lokasiTiba;
         this.penumpangTersedia = penumpangTersedia;
     }
 
-    public String getWaktuBerangkat() {
-        return waktuBerangkat;
+    public int getId() {
+        return id;
+    }
+
+    public String getKelas() {
+        return kelas;
+    }
+
+    public String getKereta() {
+        return kereta;
+    }
+
+    public String getLokasiBerangkat() {
+        return lokasiBerangkat;
+    }
+
+    public String getLokasiTiba() {
+        return lokasiTiba;
+    }
+
+    public String getWaktuBerangkat(Boolean tanggal) {
+        String[] temp = waktuBerangkat.split(" ");
+        if(tanggal)
+            return temp[0];
+        else
+            return temp[1];
     }
 
     public void setWaktuBerangkat(String waktuBerangkat) {
         this.waktuBerangkat = waktuBerangkat;
     }
 
-    public String getWaktuTiba() {
-        return waktuTiba;
+    public String getWaktuTiba(Boolean tanggal) {
+        String[] temp = waktuTiba.split(" ");
+        if(tanggal)
+            return temp[0];
+        else
+            return temp[1];
     }
 
     public void setWaktuTiba(String waktuTiba) {
         this.waktuTiba = waktuTiba;
-    }
-
-    public String getKeretaKelasId() {
-        return keretaKelasId;
-    }
-
-    public void setKeretaKelasId(String keretaKelasId) {
-        this.keretaKelasId = keretaKelasId;
     }
 
     public int getHarga() {
@@ -60,22 +88,6 @@ public class Perjalanan implements Serializable {
 
     public void setHarga(int harga) {
         this.harga = harga;
-    }
-
-    public int getLokasiBerangkatId() {
-        return lokasiBerangkatId;
-    }
-
-    public void setLokasiBerangkatId(int lokasiBerangkatId) {
-        this.lokasiBerangkatId = lokasiBerangkatId;
-    }
-
-    public int getLokasiTibaId() {
-        return lokasiTibaId;
-    }
-
-    public void setLokasiTibaId(int lokasiTibaId) {
-        this.lokasiTibaId = lokasiTibaId;
     }
 
     public int getPenumpangTersedia() {

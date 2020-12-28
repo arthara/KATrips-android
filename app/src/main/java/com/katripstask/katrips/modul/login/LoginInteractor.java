@@ -8,6 +8,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.katripstask.katrips.callback.RequestCallback;
 import com.katripstask.katrips.constant.ApiConstant;
+import com.katripstask.katrips.model.User;
 import com.katripstask.katrips.response.LoginResponse;
 import com.katripstask.katrips.utils.SharedPrefManager;
 
@@ -38,9 +39,6 @@ public class LoginInteractor implements LoginContract.Interactor {
 
                     @Override
                     public void onError(ANError anError) {
-//                        Log.d("cek", String.valueOf(anError.getErrorCode()));
-//                        Log.d("cek", anError.getErrorBody());
-//                        Log.d("cek", anError.getErrorDetail());
                         requestCallback.requestFailed(anError.getMessage().toString());
                     }
                 });
@@ -49,5 +47,10 @@ public class LoginInteractor implements LoginContract.Interactor {
     @Override
     public void saveToken(String token) {
         sharedPrefManager.setToken(token);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        sharedPrefManager.setUser(user);
     }
 }
