@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InputJadwalJmlhBayi"></activity>
+        <activity android:name=".landing_page_new"></activity>
+        <activity android:name=".InputJadwalJmlhBayi" />
         <activity android:name=".InputJadwalJmlhDewasa" />
         <activity android:name=".InputJadwalTglPulang" />
         <activity android:name=".InputJadwalTglBerangkat" />

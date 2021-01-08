@@ -8,4 +8,6 @@
 
     <color name="colorNavigationIcon">#dae9f6</color>
     <color name="colorNavigationText">#ffffff</color>
+
+    <color name="my_spinner_text_color">#808080</color>
 </resources>

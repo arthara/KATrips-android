@@ -21,11 +21,10 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/menu_bar_enter"
-        app:fabSize="auto"
+        android:src="@drawable/ic_keretanoborder"
+        app:fabSize="mini"
         app:layout_anchor="@+id/bottomAppBar3"
-        app:layout_anchorGravity="top|center"/>
+        android:layout_gravity="center|bottom" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
