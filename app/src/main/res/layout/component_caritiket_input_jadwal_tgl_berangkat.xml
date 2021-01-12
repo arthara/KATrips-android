@@ -14,7 +14,9 @@
         android:autofillHints=""
         android:backgroundTint="#ffffff"
         android:hint="@string/tgl_brng"
+        android:textColorHint="#ffffff"
         android:clickable="true"
+        android:textColor="#ffffff"
         android:padding="15dp"
         android:focusable="false" />
 </LinearLayout>

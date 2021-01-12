@@ -70,6 +70,9 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
 
                     @Override
                     public void onError(ANError anError) {
+                        Log.d("cek", "onError errorCode : " + anError.getErrorCode());
+                        Log.d("cek", "onError errorBody : " + anError.getErrorBody());
+                        Log.d("cek", "onError errorDetail : " + anError.getErrorDetail());
                         requestCallback.requestFailed(anError.getErrorDetail());
                     }
                 });

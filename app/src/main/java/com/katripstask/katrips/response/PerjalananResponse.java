@@ -8,7 +8,7 @@ import com.katripstask.katrips.model.Perjalanan;
 import java.util.List;
 
 public class PerjalananResponse {
-    @SerializedName("perjalanans")
+    @SerializedName("Perjalanan")
     List<Perjalanan> perjalanans;
     public String message;
     public boolean success;

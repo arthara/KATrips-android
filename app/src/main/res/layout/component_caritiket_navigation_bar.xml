@@ -1,32 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modul.caritiket.component.NavigationBar"
-    >
+    tools:context=".modul.caritiket.component.NavigationBar">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar3"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="#FFFFFF"
-        app:menu="@menu/menu_nav_bar"
-        app:navigationIcon="@drawable/menu_bar_home"/>
+        app:backgroundTint="#ffffff">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/homePage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/menu_bar_home"
+                    android:padding="@dimen/small_margin"
+                    app:tint="@null" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4">
+
+                <com.google.android.material.bottomappbar.BottomAppBar
+                    android:id="@+id/imgShowMenu"
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    app:backgroundTint="#ffffff"
+                    app:menu="@menu/menu_nav_bar" />
+
+                <!--<ImageButton
+                    android:id="@+id/imgShowMenu"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:padding="@dimen/small_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/menu_bar_more"
+                    android:clickable="true"/>-->
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_cariTiket"
-        android:layout_width="match_parent"
+        app:backgroundTint="#ffffff"
+        app:layout_anchor="@id/bottomAppBar3"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:src="@drawable/ic_keretanoborder"
         android:clickable="true"
-        android:src="@drawable/menu_bar_enter"
-        app:fabSize="auto"
-        app:layout_anchor="@+id/bottomAppBar3"
-        app:layout_anchorGravity="top|center"
         android:focusable="true" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

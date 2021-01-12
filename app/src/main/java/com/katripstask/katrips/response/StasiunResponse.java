@@ -8,6 +8,6 @@ import java.util.List;
 public class StasiunResponse {
     public boolean success;
     public String message;
-    @SerializedName("stasiun")
+    @SerializedName("Stasiun")
     public List<Stasiun> stasiuns;
 }
