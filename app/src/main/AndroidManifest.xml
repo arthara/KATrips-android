@@ -26,6 +26,7 @@
         <activity android:name=".modul.caritiket.CariTiketActivity" />
         <activity android:name=".modul.pilihtiket.PilihTiketActivity" />
         <activity android:name=".modul.inputpesanan.InputPesananActivity" />
+        <activity android:name=".modul.konfirmasitiket.KonfirmasiTiketActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

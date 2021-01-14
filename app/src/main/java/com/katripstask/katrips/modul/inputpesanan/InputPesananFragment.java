@@ -7,18 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.katripstask.katrips.MainActivity;
 import com.katripstask.katrips.R;
 import com.katripstask.katrips.base.BaseFragment;
+import com.katripstask.katrips.model.Penumpang;
 import com.katripstask.katrips.model.Perjalanan;
+import com.katripstask.katrips.modul.caritiket.CariTiketActivity;
+import com.katripstask.katrips.modul.konfirmasitiket.KonfirmasiTiketActivity;
 import com.katripstask.katrips.utils.UtilProvider;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class InputPesananFragment extends BaseFragment<InputPesananActivity, InputPesananContract.Presenter> implements InputPesananContract.View {
@@ -31,6 +36,7 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
 
     FloatingActionButton btn_checkOut;
     Perjalanan perjalananDipesan;
+    ImageView iv_btnHome, iv_settingBtn,iv_backBtn;
 
     @Nullable
     @Override
@@ -45,6 +51,21 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
             @Override
             public void onClick(View view) {
                 btnCheckoutAction();
+            }
+        });
+        iv_btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, CariTiketActivity.class);
+                startActivity(intent);
+                activity.finish();
+            }
+        });
+
+        iv_backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.finish();
             }
         });
 
@@ -72,12 +93,16 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
         tv_detailHarga = fragmentView.findViewById(R.id.tv_jmlhPenumpang_inptPesan);
 
         btn_checkOut = fragmentView.findViewById(R.id.btn_checkOut_inptPesanan);
+
+        iv_backBtn = fragmentView.findViewById(R.id.iv_backBtn);
+        iv_btnHome = fragmentView.findViewById(R.id.ic_home);
+        iv_settingBtn = fragmentView.findViewById(R.id.ic_vert);
     }
 
     private void setInitView(){
         perjalananDipesan = (Perjalanan) getActivity().getIntent().getSerializableExtra("perjalanan");
-        tv_stasiunAsal.setText(perjalananDipesan.getLokasiBerangkat());
-        tv_stasiunTujuan.setText(perjalananDipesan.getLokasiTiba());
+        tv_stasiunAsal.setText(perjalananDipesan.getLokasiBerangkat().getNama());
+        tv_stasiunTujuan.setText(perjalananDipesan.getLokasiTiba().getNama());
         tv_jamKeberangkatan.setText(perjalananDipesan.getWaktuBerangkat(false));
         tv_jamTiba.setText(perjalananDipesan.getWaktuTiba(false));
         tv_kelas.setText(perjalananDipesan.getKelas());
@@ -87,38 +112,32 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
 
         tv_namaUser.setText(mPresenter.getUser().getNama());
         tv_emailUser.setText(mPresenter.getUser().getEmail());
-        tv_totalHarga.setText("Rp. " + perjalananDipesan.getHarga()); // Static Value
+        tv_totalHarga.setText("Rp. " + perjalananDipesan.getHarga()*1); // Static Value
+        tv_detailHarga.setText("1 x " + perjalananDipesan.getHarga());
         tv_kategori.setText("Kategori : Dewasa"); // Static Value
     }
 
     private void btnCheckoutAction(){
-        mPresenter.checkout(perjalananDipesan);
+        mPresenter.checkOut(perjalananDipesan);
     }
 
     @Override
-    public void redirectToPilihTiket() {
-
-    }
-
-    @Override
-    public void recireckToCheckout(Perjalanan perjalanan) {
-        Bundle dataDaftarTiket = new Bundle();
-        String namaPnmpng = et_namaPenumpang.getText().toString();
-        String noKtpPnpmng = et_noKtp.getText().toString();
-        int bayiId = 0;
-        int perjalananId = perjalananDipesan.getId();
-
-        dataDaftarTiket.putString("namaPenumpang", namaPnmpng);
-        dataDaftarTiket.putString("noKtpPenumpang", noKtpPnpmng);
-        dataDaftarTiket.putInt("bayiId", bayiId);
-        dataDaftarTiket.putInt("perjalananId", perjalananId);
-
-        Intent intent = new Intent(activity, MainActivity.class);
-        intent.putExtras(dataDaftarTiket);
-        intent.putExtra("perjalanan", (Serializable) perjalanan);
-        
+    public void redirectToCheckOut(Perjalanan perjalanan) {
+        List<Penumpang> penumpangs = new ArrayList<>();
+        Log.d("cek", "kelas perjalanan = " + perjalanan.getKelas() );
+        Penumpang penumpang = new Penumpang(et_namaPenumpang.getText().toString(), Integer.parseInt(et_noKtp.getText().toString()), true);
+        penumpangs.add(penumpang);
+        Intent intent = new Intent(activity, KonfirmasiTiketActivity.class); // CHeckOUt Activity belum ada
+        intent.putExtra("penumpangs", (Serializable) penumpangs);
+        intent.putExtra("perjalanan", (Serializable) perjalananDipesan);
+        intent.putExtra("user", (Serializable) mPresenter.getUser());
         startActivity(intent);
         activity.finish();
+    }
+
+    @Override
+    public void redirectToCariTiket() {
+
     }
 
     @Override

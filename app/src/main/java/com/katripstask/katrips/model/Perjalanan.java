@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Perjalanan implements Serializable {
+    @SerializedName("id")
     private int id;
     @SerializedName("waktu_berangkat")
     private String waktuBerangkat;
@@ -20,13 +21,13 @@ public class Perjalanan implements Serializable {
     @SerializedName("harga")
     private int harga;
     @SerializedName("lokasi_berangkat")
-    private String lokasiBerangkat;
+    private Stasiun lokasiBerangkat;
     @SerializedName("lokasi_tiba")
-    private String lokasiTiba;
+    private Stasiun lokasiTiba;
     @SerializedName("penumpang_tersedia")
     private int penumpangTersedia;
 
-    public Perjalanan(int id, String waktuBerangkat, String waktuTiba, String kelas, String kereta, int harga, String lokasiBerangkat, String lokasiTiba, int penumpangTersedia) {
+    public Perjalanan(int id, String waktuBerangkat, String waktuTiba, String kelas, String kereta, int harga, Stasiun lokasiBerangkat, Stasiun lokasiTiba, int penumpangTersedia) {
         this.id = id;
         this.waktuBerangkat = waktuBerangkat;
         this.waktuTiba = waktuTiba;
@@ -50,11 +51,11 @@ public class Perjalanan implements Serializable {
         return kereta;
     }
 
-    public String getLokasiBerangkat() {
+    public Stasiun getLokasiBerangkat() {
         return lokasiBerangkat;
     }
 
-    public String getLokasiTiba() {
+    public Stasiun getLokasiTiba() {
         return lokasiTiba;
     }
 

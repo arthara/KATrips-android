@@ -73,7 +73,7 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
                         Log.d("cek", "onError errorCode : " + anError.getErrorCode());
                         Log.d("cek", "onError errorBody : " + anError.getErrorBody());
                         Log.d("cek", "onError errorDetail : " + anError.getErrorDetail());
-                        requestCallback.requestFailed(anError.getErrorDetail());
+                        requestCallback.requestFailed(anError.getMessage());
                     }
                 });
     }

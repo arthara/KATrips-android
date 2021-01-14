@@ -2,7 +2,6 @@ package com.katripstask.katrips.modul.inputpesanan;
 
 import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.model.User;
-import com.katripstask.katrips.modul.inputpesanan.InputPesananContract;
 
 public class InputPesananPresenter implements InputPesananContract.Presenter {
     private final InputPesananContract.View view;
@@ -20,13 +19,13 @@ public class InputPesananPresenter implements InputPesananContract.Presenter {
 
 
     @Override
-    public void backToPilihTiket() {
-        view.redirectToPilihTiket();
+    public void checkOut(Perjalanan perjalanan) {
+        view.redirectToCheckOut(perjalanan);
     }
 
     @Override
-    public void checkout(Perjalanan perjalanan) {
-        view.recireckToCheckout(perjalanan);
+    public void backToCariTiket() {
+        view.redirectToCariTiket();
     }
 
     @Override

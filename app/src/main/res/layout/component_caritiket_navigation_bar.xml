@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/homePage"
+                android:id="@+id/btmAppBar_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -46,12 +46,13 @@
                 app:layout_constraintWidth_percent="0.4">
 
                 <com.google.android.material.bottomappbar.BottomAppBar
-                    android:id="@+id/imgShowMenu"
+                    android:id="@+id/btmAppBar_menu"
                     android:layout_width="88dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     app:backgroundTint="#ffffff"
-                    app:menu="@menu/menu_nav_bar" />
+                    app:menu="@menu/menu_nav_bar"
+                    tools:ignore="BottomAppBar" />
 
                 <!--<ImageButton
                     android:id="@+id/imgShowMenu"

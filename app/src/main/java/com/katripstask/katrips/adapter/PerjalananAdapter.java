@@ -47,21 +47,14 @@ public class PerjalananAdapter extends RecyclerView.Adapter<PerjalananAdapter.Pe
 
     @Override
     public void onBindViewHolder(@NonNull PerjalananViewHolder holder, final int position) {
-        Log.d("cek", listPerjalanan.get(position).getHarga()+"");
-        Log.d("cek", listPerjalanan.get(position).getLokasiBerangkat());
-        Log.d("cek", listPerjalanan.get(position).getLokasiTiba());
-        Log.d("cek", listPerjalanan.get(position).getWaktuBerangkat(false));
-        Log.d("cek", listPerjalanan.get(position).getWaktuTiba(false));
-        Log.d("cek", listPerjalanan.get(position).getKelas());
-        Log.d("cek", listPerjalanan.get(position).getKereta());
-        holder.tv_harga.setText(listPerjalanan.get(position).getHarga()+"");
-        holder.tv_stasiunAsal.setText("Gubeng");
-        holder.tv_stasiunTujuan.setText(listPerjalanan.get(position).getLokasiTiba());
+        holder.tv_harga.setText("Rp. " + listPerjalanan.get(position).getHarga());
+        holder.tv_stasiunAsal.setText(listPerjalanan.get(position).getLokasiBerangkat().getNama());
+        holder.tv_stasiunTujuan.setText(listPerjalanan.get(position).getLokasiTiba().getNama());
         holder.tv_jamBerangkat.setText(listPerjalanan.get(position).getWaktuBerangkat(false));
         holder.tv_jamTiba.setText(listPerjalanan.get(position).getWaktuTiba(false));
         holder.tv_kelas.setText(listPerjalanan.get(position).getKelas());
         holder.tv_kereta.setText(listPerjalanan.get(position).getKereta());
-        holder.tv_durasiPerjalanan.setText("2 Jam 3 Menit");
+        holder.tv_durasiPerjalanan.setText("2 Jam 3 Menit"); // Static, Dummy value
     }
 
     @Override

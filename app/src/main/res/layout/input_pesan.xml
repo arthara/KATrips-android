@@ -491,7 +491,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="64dp"
-
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/cd_btn_home"
         android:src="@drawable/ic_home_24px"
@@ -502,14 +501,14 @@
 
     <ImageView
         android:id="@+id/ic_vert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="7dp"
+        android:layout_height="26dp"
         android:layout_marginStart="64dp"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:contentDescription="@string/cd_btn_setting"
         android:src="@drawable/ic_more_vert_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ic_home"/>
+        app:layout_constraintStart_toEndOf="@+id/ic_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

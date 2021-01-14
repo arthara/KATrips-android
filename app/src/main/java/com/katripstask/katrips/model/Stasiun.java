@@ -2,7 +2,9 @@ package com.katripstask.katrips.model;
 
 import androidx.annotation.NonNull;
 
-public class Stasiun {
+import java.io.Serializable;
+
+public class Stasiun implements Serializable {
     private int id;
     private String nama;
     private String kode;
