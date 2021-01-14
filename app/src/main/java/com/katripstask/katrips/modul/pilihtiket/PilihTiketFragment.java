@@ -37,6 +37,7 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
         fragmentView = inflater.inflate(R.layout.activity_perjalanan, container, false);
         mPresenter = new PilihTiketPresenter(this, new PilihTiketInteractor(UtilProvider.getSharedPrefManager()));
         initView();
+        setInitView();
 
         final List<Perjalanan> perjalanans = (List<Perjalanan>) getActivity().getIntent().getSerializableExtra("listPerjalanan");
         PerjalananAdapter perjalananAdapter = new PerjalananAdapter(activity, perjalanans);
@@ -54,11 +55,18 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     }
 
     private void initView(){
-        tv_kodeStasiunAsal = fragmentView.findViewById(R.id.tv_kodeStasiunAwal);
-        tv_KodeStasiunTujuan = fragmentView.findViewById(R.id.tv_kodeStasiunTujuan);
-        tv_stasiunAsal = fragmentView.findViewById(R.id.tv_stasiun_asal);
-        tv_stasiunTujuan = fragmentView.findViewById(R.id.tv_stasiun_tujuan);
-        recyclerView = fragmentView.findViewById(R.id.rv_listPerjalanan);
+        tv_kodeStasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunAwal);
+        tv_KodeStasiunTujuan = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunTujuan);
+        tv_stasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_stasiunAsal);
+        tv_stasiunTujuan = fragmentView.findViewById(R.id.tv_pilihTiket_stasiunTujuan);
+        recyclerView = fragmentView.findViewById(R.id.rv_pilihTiket_listPerjalanan);
+    }
+
+    private void setInitView(){
+        tv_kodeStasiunAsal.setText("SGU");
+        tv_KodeStasiunTujuan.setText("BLI");
+        tv_stasiunAsal.setText("Surabaya Gubeng");
+        tv_stasiunTujuan.setText("Blitar");
     }
 
 

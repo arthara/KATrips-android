@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JadwalKereta">
+    tools:context=".modul.pilihtiket.PilihTiketActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
@@ -55,7 +55,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_kodeStasiunTujuan"
+                android:id="@+id/tv_pilihTiket_kodeStasiunTujuan"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="290dp"
@@ -74,7 +74,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_stasiunTujuan"
+                android:id="@+id/tv_pilihTiket_stasiunTujuan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="300dp"
@@ -92,7 +92,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_kodeStasiunAwal"
+                android:id="@+id/tv_pilihTiket_kodeStasiunAwal"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="30dp"
@@ -111,7 +111,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tv_stasiunAsal"
+                android:id="@+id/tv_pilihTiket_stasiunAsal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -126,7 +126,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_listPerjalanan"
+        android:id="@+id/rv_pilihTiket_listPerjalanan"
         android:layout_width="409dp"
         android:layout_height="479dp"
         android:layout_marginStart="1dp"

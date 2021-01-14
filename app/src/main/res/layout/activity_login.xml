@@ -62,7 +62,7 @@
             android:src="@drawable/btn_login_fresh" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/iv_login_btnAboutUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"

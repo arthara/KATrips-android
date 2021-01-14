@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.katripstask.katrips.R;
+import com.katripstask.katrips.about_us;
 import com.katripstask.katrips.base.BaseFragment;
 import com.katripstask.katrips.modul.caritiket.CariTiketActivity;
 import com.katripstask.katrips.utils.UtilProvider;
@@ -21,6 +23,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     EditText etEmail;
     EditText etPassword;
     ImageButton btnLogin;
+    ImageView btnAboutUs;
 
     @Nullable
     @Override
@@ -30,12 +33,21 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
         mPresenter = new LoginPresenter(this, new LoginInteractor(UtilProvider.getSharedPrefManager()));
         etEmail = fragmentView.findViewById(R.id.etEmail);
         etPassword = fragmentView.findViewById(R.id.etPassword);
+        btnAboutUs = fragmentView.findViewById(R.id.iv_login_btnAboutUs);
 
         btnLogin = fragmentView.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnLoginOnClick();
+            }
+        });
+
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, about_us.class);
+                startActivity(intent);
             }
         });
 

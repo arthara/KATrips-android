@@ -47,8 +47,15 @@ public class PerjalananAdapter extends RecyclerView.Adapter<PerjalananAdapter.Pe
 
     @Override
     public void onBindViewHolder(@NonNull PerjalananViewHolder holder, final int position) {
+        Log.d("cek", listPerjalanan.get(position).getHarga()+"");
+        Log.d("cek", listPerjalanan.get(position).getLokasiBerangkat());
+        Log.d("cek", listPerjalanan.get(position).getLokasiTiba());
+        Log.d("cek", listPerjalanan.get(position).getWaktuBerangkat(false));
+        Log.d("cek", listPerjalanan.get(position).getWaktuTiba(false));
+        Log.d("cek", listPerjalanan.get(position).getKelas());
+        Log.d("cek", listPerjalanan.get(position).getKereta());
         holder.tv_harga.setText(listPerjalanan.get(position).getHarga()+"");
-        holder.tv_stasiunAsal.setText(listPerjalanan.get(position).getLokasiBerangkat());
+        holder.tv_stasiunAsal.setText("Gubeng");
         holder.tv_stasiunTujuan.setText(listPerjalanan.get(position).getLokasiTiba());
         holder.tv_jamBerangkat.setText(listPerjalanan.get(position).getWaktuBerangkat(false));
         holder.tv_jamTiba.setText(listPerjalanan.get(position).getWaktuTiba(false));
@@ -71,14 +78,14 @@ public class PerjalananAdapter extends RecyclerView.Adapter<PerjalananAdapter.Pe
 
         public PerjalananViewHolder(View view) {
             super(view);
-            tv_stasiunAsal = view.findViewById(R.id.tv_stasiun_asal);
-            tv_stasiunTujuan = view.findViewById(R.id.tv_stasiun_tujuan);
-            tv_jamBerangkat = view.findViewById(R.id.jadwal_berangkat_time);
-            tv_jamTiba = view.findViewById(R.id.jadwal_tiba_time);
-            tv_kereta = view.findViewById(R.id.tv_kereta);
-            tv_kelas = view.findViewById(R.id.tv_kelas);
-            tv_durasiPerjalanan = view.findViewById(R.id.tv_durasiPerjalanan);
-            tv_harga = view.findViewById(R.id.tv_harga);
+            tv_stasiunAsal = view.findViewById(R.id.tv_perjalananItem_stasiunAsal);
+            tv_stasiunTujuan = view.findViewById(R.id.tv_perjalananItem_stasiunTujuan);
+            tv_jamBerangkat = view.findViewById(R.id.tv_perjalananItem_jamBerangkat);
+            tv_jamTiba = view.findViewById(R.id.tv_perjalananItem_jamTiba);
+            tv_kereta = view.findViewById(R.id.tv_perjalananItem_kereta);
+            tv_kelas = view.findViewById(R.id.tv_perjalananItem_kelas);
+            tv_durasiPerjalanan = view.findViewById(R.id.tv_perjalananItem_durasiPerjalanan);
+            tv_harga = view.findViewById(R.id.tv_perjalananItem_harga);
             cardView = view.findViewById(R.id.cv_perjalananItem);
 
             view.setOnClickListener(new View.OnClickListener() {
