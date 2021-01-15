@@ -8,7 +8,7 @@ import com.katripstask.katrips.model.User;
 public interface InputPesananContract {
     interface View extends BaseView<Presenter> {
         void redirectToPilihTiket();
-        void recireckToCheckout(Perjalanan perjalanan);
+        void redireckToCheckout(Perjalanan perjalanan);
     }
 
     interface Presenter extends BasePresenter{

@@ -118,11 +118,22 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
     }
 
     private void btnCheckoutAction(){
-        mPresenter.checkOut(perjalananDipesan);
+        mPresenter.checkout(perjalananDipesan);
     }
 
     @Override
-    public void redirectToCheckOut(Perjalanan perjalanan) {
+    public void setPresenter(InputPesananContract.Presenter presenter) {
+
+    }
+
+
+    @Override
+    public void redirectToPilihTiket() {
+
+    }
+
+    @Override
+    public void redireckToCheckout(Perjalanan perjalanan) {
         List<Penumpang> penumpangs = new ArrayList<>();
         Log.d("cek", "kelas perjalanan = " + perjalanan.getKelas() );
         Penumpang penumpang = new Penumpang(et_namaPenumpang.getText().toString(), Integer.parseInt(et_noKtp.getText().toString()), true);
@@ -134,16 +145,4 @@ public class InputPesananFragment extends BaseFragment<InputPesananActivity, Inp
         startActivity(intent);
         activity.finish();
     }
-
-    @Override
-    public void redirectToCariTiket() {
-
-    }
-
-    @Override
-    public void setPresenter(InputPesananContract.Presenter presenter) {
-
-    }
-
-
 }

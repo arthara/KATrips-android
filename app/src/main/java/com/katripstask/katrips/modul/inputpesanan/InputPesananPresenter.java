@@ -17,15 +17,14 @@ public class InputPesananPresenter implements InputPesananContract.Presenter {
 
     }
 
-
     @Override
-    public void checkOut(Perjalanan perjalanan) {
-        view.redirectToCheckOut(perjalanan);
+    public void backToPilihTiket() {
+        view.redirectToPilihTiket();
     }
 
     @Override
-    public void backToCariTiket() {
-        view.redirectToCariTiket();
+    public void checkout(Perjalanan perjalanan) {
+        view.redireckToCheckout(perjalanan);
     }
 
     @Override
