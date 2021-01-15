@@ -62,8 +62,10 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
                             requestCallback.requestSuccess(response);
 
                         }else if(response.success == false){
+                            Log.d("cek", "Fail 1 ");
                             requestCallback.requestFailed("Failed Get Trip");
                         }else{
+                            Log.d("cek", "Fail 2 ");
                             requestCallback.requestFailed("Null Response");
                         }
                     }

@@ -9,18 +9,21 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="100dp"
+        android:layout_marginBottom="110dp"
+        android:foregroundGravity="center"
         android:src="@drawable/judul_login" />
 
     <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="450dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
