@@ -220,6 +220,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
             }
         }
         Intent intent = new Intent(activity, PilihTiketActivity.class);
+        intent.putExtra("perjalanans", (Serializable) perjalanans);
         startActivity(intent);
         activity.finish();
     }

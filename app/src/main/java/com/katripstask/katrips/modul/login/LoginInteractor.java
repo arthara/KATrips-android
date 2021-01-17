@@ -39,7 +39,7 @@ public class LoginInteractor implements LoginContract.Interactor {
 
                     @Override
                     public void onError(ANError anError) {
-                        requestCallback.requestFailed(anError.getMessage().toString());
+                        requestCallback.requestFailed(anError.getErrorBody());
                     }
                 });
     }
@@ -51,6 +51,8 @@ public class LoginInteractor implements LoginContract.Interactor {
 
     @Override
     public void saveUser(User user) {
+        Log.d("cek", "save user");
         sharedPrefManager.setUser(user);
+        Log.d("cek", "Method save user Cek " + user.getNama());
     }
 }

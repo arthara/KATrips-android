@@ -70,7 +70,7 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     }
 
     private void initView(){
-        perjalanans = (List<Perjalanan>) getActivity().getIntent().getSerializableExtra("listPerjalanan");
+        perjalanans = (List<Perjalanan>) getActivity().getIntent().getSerializableExtra("perjalanans");
         tv_kodeStasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunAwal);
         tv_KodeStasiunTujuan = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunTujuan);
         tv_stasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_stasiunAsal);
