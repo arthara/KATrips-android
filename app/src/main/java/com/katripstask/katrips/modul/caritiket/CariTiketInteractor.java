@@ -60,7 +60,6 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
                     public void onResponse(PerjalananResponse response) {
                         if(response.success == true){
                             requestCallback.requestSuccess(response);
-
                         }else if(response.success == false){
                             Log.d("cek", "Fail 1 ");
                             requestCallback.requestFailed("Failed Get Trip");
@@ -75,7 +74,7 @@ public class CariTiketInteractor implements CariTiketContract.Interactor {
                         Log.d("cek", "onError errorCode : " + anError.getErrorCode());
                         Log.d("cek", "onError errorBody : " + anError.getErrorBody());
                         Log.d("cek", "onError errorDetail : " + anError.getErrorDetail());
-                        requestCallback.requestFailed(anError.getMessage());
+                        requestCallback.requestFailed(anError.getErrorBody());
                     }
                 });
     }

@@ -41,6 +41,7 @@ import com.katripstask.katrips.utils.UtilProvider;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +55,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     Calendar tglBerangkat;
     int idStasiunAwal, idStasiunTujuan, jmlhPenumpangDws, jmlhPenumpangBy;
     DatePickerDialog.OnDateSetListener date;
+    List<Stasiun> stasiuns = new ArrayList<>();
 
     @Nullable
     @Override
@@ -189,6 +191,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
 
     @Override
     public void setSpinnerStasiun(List<Stasiun> stasiuns) {
+        this.stasiuns = stasiuns;
         ArrayAdapter<Stasiun> stasiunAdapter = new ArrayAdapter<>(activity, R.layout.item_stasiun, stasiuns);
         stasiunAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnrStasiunKe.setAdapter(stasiunAdapter);
@@ -197,9 +200,26 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
 
     @Override
     public void tiketDitemukan(List<Perjalanan> perjalanans) {
-        Toast.makeText(activity, "Tiket Ditemukan", Toast.LENGTH_SHORT).show();
+        for(int i=0;  i<perjalanans.size(); i++){
+            Boolean setStasiunAsal = false;
+            Boolean setStasiunTiba = false;
+            for(int j=0; j<stasiuns.size(); j++){
+                if(!(setStasiunAsal)){
+                    if(perjalanans.get(i).getLokasiBerangkatId() == stasiuns.get(j).getStasiunId()){
+                        perjalanans.get(i).setLokasiBerangkat(stasiuns.get(j));
+                        setStasiunAsal = true;
+                    }
+                }
+                if(!(setStasiunTiba)){
+                    if(perjalanans.get(i).getLokasiTibaId() == stasiuns.get(j).getStasiunId()){
+                        perjalanans.get(i).setLokasiTiba(stasiuns.get(j));
+                        setStasiunTiba = true;
+                    }
+                }
+                if(setStasiunAsal && setStasiunTiba) break;
+            }
+        }
         Intent intent = new Intent(activity, PilihTiketActivity.class);
-        intent.putExtra("listPerjalanan", (Serializable) perjalanans);
         startActivity(intent);
         activity.finish();
     }
