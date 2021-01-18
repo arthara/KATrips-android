@@ -1,5 +1,6 @@
 package com.katripstask.katrips.modul.caritiket;
 
+import com.katripstask.katrips.UserInteractor;
 import com.katripstask.katrips.base.BasePresenter;
 import com.katripstask.katrips.base.BaseView;
 import com.katripstask.katrips.callback.RequestCallback;
@@ -24,11 +25,12 @@ public interface CariTiketContract {
     }
 
     interface Presenter extends BasePresenter{
+        void logout();
         void requestListStasiun();
         void requestListPerjalanan(PerjalananRequest perjalananRequest);
     }
 
-    interface Interactor{
+    interface Interactor extends UserInteractor {
         void getAllStasiun(RequestCallback<List<Stasiun>> requestCallback);
         void requestPerjalanan(PerjalananRequest perjalananRequest, RequestCallback<PerjalananResponse> requestCallback);
     }

@@ -20,6 +20,13 @@ public class User implements Serializable {
         this.tglLahir = tglLahir;
     }
 
+    public User(String nama, String email, String alamat, String tglLahir) {
+        this.nama = nama;
+        this.email = email;
+        this.alamat = alamat;
+        this.tglLahir = tglLahir;
+    }
+
     public int getId() {
         return id;
     }

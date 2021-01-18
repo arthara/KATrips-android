@@ -58,4 +58,8 @@ public class CariTiketPresenter implements CariTiketContract.Presenter {
     public void start() {
 
     }
+
+    public void logout() {
+        interactor.logout();
+    }
 }
