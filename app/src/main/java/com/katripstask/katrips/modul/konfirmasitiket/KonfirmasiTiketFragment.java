@@ -160,16 +160,17 @@ public class KonfirmasiTiketFragment extends BaseFragment<KonfirmasiTiketActivit
     }
     
     @Override
-    public void checkOut(int kodePembayaran){
-        Intent intent = new Intent(activity, MainActivity.class); // CHeckOUt Activity belum ada
-        intent.putExtra("invoce", kodePembayaran);
-        startActivity(intent);
-        activity.finish();
+    public void checkOut(String response){
+        Toast.makeText(activity, response, Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(activity, MainActivity.class); // CHeckOUt Activity belum ada
+//        intent.putExtra("invoce", kodePembayaran);
+//        startActivity(intent);
+//        activity.finish();
     }
         
     @Override
     public void backToInputPesanan(String failedMsg){
-        
+        Toast.makeText(activity, failedMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override

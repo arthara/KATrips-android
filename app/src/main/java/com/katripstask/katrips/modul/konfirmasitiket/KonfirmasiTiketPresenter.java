@@ -9,6 +9,7 @@ import com.katripstask.katrips.response.LoginResponse;
 import com.katripstask.katrips.response.StasiunResponse;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class KonfirmasiTiketPresenter implements KonfirmasiTiketContract.Presenter {
     private final KonfirmasiTiketContract.View view;
@@ -26,10 +27,10 @@ public class KonfirmasiTiketPresenter implements KonfirmasiTiketContract.Present
 
     @Override
     public void pesanTiket(PesanTiketRequest pesanTiketRequest) {
-        interactor.pesanTiket(pesanTiketRequest, new RequestCallback<KonfirmasiTiketResponse>() {
+        interactor.pesanTiket(pesanTiketRequest, new RequestCallback<JSONObject>() {
             @Override
-            public void requestSuccess(KonfirmasiTiketResponse data) {
-                view.checkOut(data.invoice);
+            public void requestSuccess(JSONObject data) {
+                view.checkOut(data.toString());
             }
 
             @Override
