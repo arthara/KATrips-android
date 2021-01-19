@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.katripstask.katrips.MainActivity;
 import com.katripstask.katrips.R;
@@ -34,7 +37,10 @@ public class KonfirmasiTiketFragment extends BaseFragment<KonfirmasiTiketActivit
     // Detail User
     TextView tv_namaUser, tv_emailUser;
     // Footer Component
-    ImageView btnCheckout;
+    FloatingActionButton btnCheckout;
+
+    ImageView iv_btnHome, iv_btBack;
+    BottomAppBar bottomAppBarMenu;
 
     Perjalanan perjalanan;
     List<Penumpang> penumpangs;
@@ -49,13 +55,45 @@ public class KonfirmasiTiketFragment extends BaseFragment<KonfirmasiTiketActivit
         initView();
         setInitView();
 
-        btnCheckout = fragmentView.findViewById(R.id.iv_detailPembayaran_btnCheckout);
+        btnCheckout = fragmentView.findViewById(R.id.btn_cariTiket);
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnKonfirmasiTiketOnClick();
             }
         });
+
+        iv_btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.setResult(activity.RESULT_CANCELED);
+                activity.finish();
+            }
+        });
+
+        bottomAppBarMenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.btmAppBarItem_logout){
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("logout", true);
+                    activity.setResult(activity.RESULT_OK, returnIntent);
+                    activity.finish();
+                }
+                return false;
+            }
+        });
+
+        iv_btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("home", true);
+                activity.setResult(activity.RESULT_OK, returnIntent);
+                activity.finish();
+            }
+        });
+
 
         return fragmentView;
     }
@@ -77,6 +115,10 @@ public class KonfirmasiTiketFragment extends BaseFragment<KonfirmasiTiketActivit
         //tv_detailPenumpang = fragmentView.findViewById(R.id.tv_detailPembayaran_detialPenumpang);
         tv_namaUser = fragmentView.findViewById(R.id.tv_detailPembayaran_username);
         tv_emailUser = fragmentView.findViewById(R.id.tv_detailPembayaran_useremail);
+
+        iv_btBack = fragmentView.findViewById(R.id.iv__detailPembayaran_backBtn);
+        iv_btnHome = fragmentView.findViewById(R.id.btmAppBar_home);
+        bottomAppBarMenu = fragmentView.findViewById(R.id.btmAppBar_menu);
     }
 
     private void setInitView(){
@@ -96,6 +138,9 @@ public class KonfirmasiTiketFragment extends BaseFragment<KonfirmasiTiketActivit
 
         tv_namaUser.setText(user.getNama());
         tv_emailUser.setText(user.getEmail());
+
+        iv_btnHome = fragmentView.findViewById(R.id.btmAppBar_home);
+        bottomAppBarMenu = fragmentView.findViewById(R.id.btmAppBar_menu);
 
         tvTotalHarga.setText("Rp. " + perjalanan.getHarga()); // harga perjalanan dikali jmlh Penumpang DWS
         tvDetailHarga.setText(penumpangs.size() + " X " + perjalanan.getHarga()); // Rumus, butuh Intent dari CariTiket

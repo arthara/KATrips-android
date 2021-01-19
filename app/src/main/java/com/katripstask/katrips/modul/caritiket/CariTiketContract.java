@@ -19,6 +19,7 @@ import java.util.List;
 
 public interface CariTiketContract {
     interface View extends BaseView<Presenter> {
+        void backToLogin();
         void setSpinnerStasiun(List<Stasiun> stasiuns);
         void tiketDitemukan(List<Perjalanan> perjalanans);
         void tiketTidakDitemukan(String failedMsg);

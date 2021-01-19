@@ -50,6 +50,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     BottomAppBar bottomAppBar;
     DatePickerDialog.OnDateSetListener date;
     List<Stasiun> stasiuns = new ArrayList<>();
+    int LAUNCH_PILIH_TIKET_ACTIVITY = 1, LAUNCH_INPUT_PESANAN_ACTIVITY = 2;
 
     @Nullable
     @Override
@@ -151,9 +152,6 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
                     case R.id.btmAppBarItem_logout:
                         Toast.makeText(activity, "LOGOUT", Toast.LENGTH_SHORT).show();
                         mPresenter.logout();
-                        Intent intent = new Intent(activity, LoginActivity.class);
-                        startActivity(intent);
-                        activity.finish();
                         break;
                     default:
                         Log.d("cek", "Menu item not clicked");
@@ -182,8 +180,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         etTglBerangkat = fragmentView.findViewById(R.id.et_tglBerangkat);
         tglBerangkat  = Calendar.getInstance();
         setSpinnerPenumpang();
-        bottomAppBar = fragmentView.findViewById(R.id.bottomAppBar3);
-        bottomAppBar.replaceMenu(R.menu.menu_nav_bar);
+        bottomAppBar = fragmentView.findViewById(R.id.btmAppBar_menu);
     }
 
     @Override
@@ -207,6 +204,13 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         penumpangDwsAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnrJmlhBy.setAdapter(penumpangBayiAdapter);
         spnrJmlhDws.setAdapter(penumpangDwsAdapter);
+    }
+
+    @Override
+    public void backToLogin() {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        startActivity(intent);
+        activity.finish();
     }
 
     @Override
@@ -241,8 +245,7 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         }
         Intent intent = new Intent(activity, PilihTiketActivity.class);
         intent.putExtra("perjalanans", (Serializable) perjalanans);
-        startActivity(intent);
-        activity.finish();
+        startActivityForResult(intent, LAUNCH_PILIH_TIKET_ACTIVITY);
     }
 
     @Override
@@ -255,4 +258,16 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         mPresenter = presenter;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == LAUNCH_PILIH_TIKET_ACTIVITY){
+            if(resultCode == activity.RESULT_OK){
+                if(data.getBooleanExtra("logout", false) == true){
+                    mPresenter.logout();
+                }
+            }
+        }
+    }
 }

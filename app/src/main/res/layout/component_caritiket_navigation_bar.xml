@@ -19,7 +19,6 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/btmAppBar_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +27,7 @@
                 app:layout_constraintWidth_percent="0.4">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btmAppBar_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     app:backgroundTint="#ffffff"
+                    app:menu="@menu/menu_nav_bar"
                     tools:ignore="BottomAppBar" />
 
                 <!--<ImageButton
@@ -72,12 +73,13 @@
         android:id="@+id/btn_cariTiket"
         app:backgroundTint="#ffffff"
         app:layout_anchor="@id/bottomAppBar3"
-        app:fabSize="mini"
+        app:fabSize="auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:src="@drawable/ic_keretanoborder"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        app:maxImageSize="48dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
