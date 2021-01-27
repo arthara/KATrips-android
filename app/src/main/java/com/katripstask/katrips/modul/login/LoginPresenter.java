@@ -3,6 +3,7 @@ package com.katripstask.katrips.modul.login;
 import android.util.Log;
 
 import com.katripstask.katrips.callback.RequestCallback;
+import com.katripstask.katrips.model.User;
 import com.katripstask.katrips.response.LoginResponse;
 import com.katripstask.katrips.response.StasiunResponse;
 
@@ -21,13 +22,15 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void performLogin(String email, String password) {
+    public void performLogin(final String email, String password) {
         interactor.requestLogin(email, password, new RequestCallback<LoginResponse>() {
             @Override
             public void requestSuccess(LoginResponse data) {
-                view.loginSuccess(data.access_token);
                 interactor.saveToken(data.access_token);
-                interactor.saveUser(data.user);
+                String[] temp = email.split("@");
+                User user = new User(1, temp[0], email, "Jl. Pens No. 12", "12 Januari 2020");
+                interactor.saveUser(user);
+                view.loginSuccess(data.access_token);
             }
 
             @Override

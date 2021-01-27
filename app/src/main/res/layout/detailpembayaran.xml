@@ -206,7 +206,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv__detailPembayaran_backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -253,7 +253,7 @@
         android:id="@+id/dtlPembayaran_LL_Totalharga_V"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/iv_detailpembayaran_rectangle1"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -324,46 +324,14 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="411dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/dtlpembayaran_rectangle2" />
+    <include
+        layout="@layout/component_caritiket_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/ic_home_24px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="16dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_bookmark_24px" />
-
-    <ImageView
-        android:id="@+id/iv_detailPembayaran_btnCheckout"
-        android:layout_width="87dp"
-        android:layout_height="81dp"
-        android:layout_marginBottom="42dp"
-        android:src="@drawable/dtlpembayaran_accakun"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

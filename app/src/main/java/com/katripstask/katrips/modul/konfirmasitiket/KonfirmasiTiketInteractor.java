@@ -28,7 +28,7 @@ public class KonfirmasiTiketInteractor implements KonfirmasiTiketContract.Intera
     }
 
     @Override
-    public void pesanTiket(PesanTiketRequest pesanTiketRequest, final RequestCallback<KonfirmasiTiketResponse> requestCallback){
+    public void pesanTiket(PesanTiketRequest pesanTiketRequest, final RequestCallback<JSONObject> requestCallback){
         JSONArray penumpangs = new JSONArray();
         JSONObject tiketRequest = new JSONObject();
         for(int i=0; i<pesanTiketRequest.getPenumpangs().size(); i++){
@@ -60,6 +60,7 @@ public class KonfirmasiTiketInteractor implements KonfirmasiTiketContract.Intera
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("cek", response.toString());
+                        requestCallback.requestSuccess(response);
                     }
 
                     @Override
@@ -67,6 +68,7 @@ public class KonfirmasiTiketInteractor implements KonfirmasiTiketContract.Intera
                         Log.d("cek", anError.getResponse().toString());
                         Log.d("cek", anError.getErrorBody());
                         Log.d("cek", anError.getErrorDetail());
+                        requestCallback.requestFailed(anError.getErrorBody());
                     }
                 });
     }

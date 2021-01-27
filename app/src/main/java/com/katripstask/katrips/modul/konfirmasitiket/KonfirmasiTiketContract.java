@@ -8,11 +8,13 @@ import com.katripstask.katrips.request.PesanTiketRequest;
 import com.katripstask.katrips.response.KonfirmasiTiketResponse;
 import com.katripstask.katrips.model.User;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 public interface KonfirmasiTiketContract {
     interface View extends BaseView<Presenter> {
-        void checkOut(int kodePembayaran);
+        void checkOut(String response);
         void backToInputPesanan(String failedMsg);
     }
 
@@ -22,6 +24,6 @@ public interface KonfirmasiTiketContract {
     }
 
     interface Interactor{
-        void pesanTiket(PesanTiketRequest pesanTiketRequest, RequestCallback<KonfirmasiTiketResponse> requestCallback);
+        void pesanTiket(PesanTiketRequest pesanTiketRequest, RequestCallback<JSONObject> requestCallback);
     }
 }

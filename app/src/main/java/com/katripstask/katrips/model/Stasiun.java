@@ -15,6 +15,9 @@ public class Stasiun implements Serializable {
         this.kode = kode;
     }
 
+    public Stasiun() {
+    }
+
     public String getKode() {
         return kode;
     }

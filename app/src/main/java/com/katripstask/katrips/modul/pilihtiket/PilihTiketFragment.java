@@ -36,6 +36,7 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     TextView tv_kodeStasiunAsal, tv_KodeStasiunTujuan, tv_stasiunAsal, tv_stasiunTujuan;
     List<Perjalanan> perjalanans;
     ImageView iv_backBtn;
+    int LAUNCH_INPUT_PESANAN_ACTIVITY = 2;
 
 
     @Nullable
@@ -60,9 +61,7 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
         iv_backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, CariTiketActivity.class);
-                startActivity(intent);
-                activity.finish();
+                mPresenter.kembaliKeCariTiket();
             }
         });
 
@@ -70,7 +69,7 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     }
 
     private void initView(){
-        perjalanans = (List<Perjalanan>) getActivity().getIntent().getSerializableExtra("listPerjalanan");
+        perjalanans = (List<Perjalanan>) getActivity().getIntent().getSerializableExtra("perjalanans");
         tv_kodeStasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunAwal);
         tv_KodeStasiunTujuan = fragmentView.findViewById(R.id.tv_pilihTiket_kodeStasiunTujuan);
         tv_stasiunAsal = fragmentView.findViewById(R.id.tv_pilihTiket_stasiunAsal);
@@ -97,13 +96,34 @@ public class PilihTiketFragment extends BaseFragment<PilihTiketActivity, PilihTi
     public void pesanTiket(Perjalanan perjalanan) {
         Intent intent = new Intent(activity, InputPesananActivity.class); //Harusnya ke InputPesanan
         intent.putExtra("perjalanan", (Serializable) perjalanan);
-        startActivity(intent);
+        startActivityForResult(intent, LAUNCH_INPUT_PESANAN_ACTIVITY);
     }
 
     @Override
     public void redirectToCariTiket() {
-        Intent intent = new Intent(activity, CariTiketActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent();
+        activity.setResult(activity.RESULT_CANCELED);
         activity.finish();
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == LAUNCH_INPUT_PESANAN_ACTIVITY){
+            if(resultCode == activity.RESULT_OK){
+                    if(data.getBooleanExtra("home", false) == true){
+                        Log.d("cek", "halo");
+                        activity.setResult(activity.RESULT_CANCELED);
+                        activity.finish();
+                    }else if(data.getBooleanExtra("logout", false) == true){
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("logout", true);
+                        activity.setResult(activity.RESULT_OK, returnIntent);
+                        activity.finish();
+                    }
+            }
+        }
     }
 }

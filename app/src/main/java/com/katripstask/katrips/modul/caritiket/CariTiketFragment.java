@@ -2,7 +2,6 @@ package com.katripstask.katrips.modul.caritiket;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,39 +12,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 
+import androidx.annotation.Nullable;
+
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.katripstask.katrips.MainActivity;
 import com.katripstask.katrips.R;
 import com.katripstask.katrips.base.BaseFragment;
 import com.katripstask.katrips.model.Perjalanan;
 import com.katripstask.katrips.model.Stasiun;
 import com.katripstask.katrips.modul.login.LoginActivity;
-import com.katripstask.katrips.modul.login.LoginContract;
-import com.katripstask.katrips.modul.login.LoginInteractor;
-import com.katripstask.katrips.modul.login.LoginPresenter;
 import com.katripstask.katrips.modul.pilihtiket.PilihTiketActivity;
 import com.katripstask.katrips.request.PerjalananRequest;
-import com.katripstask.katrips.response.FindedTiketResponse;
 import com.katripstask.katrips.utils.UtilProvider;
 
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiketContract.Presenter> implements CariTiketContract.View {
     Spinner spnrStasiunDari, spnrStasiunKe, spnrJmlhDws, spnrJmlhBy;
@@ -53,7 +47,10 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     EditText etTglBerangkat;
     Calendar tglBerangkat;
     int idStasiunAwal, idStasiunTujuan, jmlhPenumpangDws, jmlhPenumpangBy;
+    BottomAppBar bottomAppBar;
     DatePickerDialog.OnDateSetListener date;
+    List<Stasiun> stasiuns = new ArrayList<>();
+    int LAUNCH_PILIH_TIKET_ACTIVITY = 1, LAUNCH_INPUT_PESANAN_ACTIVITY = 2;
 
     @Nullable
     @Override
@@ -148,6 +145,22 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
             }
         });
 
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.btmAppBarItem_logout:
+                        Toast.makeText(activity, "LOGOUT", Toast.LENGTH_SHORT).show();
+                        mPresenter.logout();
+                        break;
+                    default:
+                        Log.d("cek", "Menu item not clicked");
+                        break;
+                }
+                return false;
+            }
+        });
+
         return fragmentView;
     }
 
@@ -167,6 +180,12 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         etTglBerangkat = fragmentView.findViewById(R.id.et_tglBerangkat);
         tglBerangkat  = Calendar.getInstance();
         setSpinnerPenumpang();
+        bottomAppBar = fragmentView.findViewById(R.id.btmAppBar_menu);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private void updateLabel(Calendar mCalendar){
@@ -188,7 +207,15 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
     }
 
     @Override
+    public void backToLogin() {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        startActivity(intent);
+        activity.finish();
+    }
+
+    @Override
     public void setSpinnerStasiun(List<Stasiun> stasiuns) {
+        this.stasiuns = stasiuns;
         ArrayAdapter<Stasiun> stasiunAdapter = new ArrayAdapter<>(activity, R.layout.item_stasiun, stasiuns);
         stasiunAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnrStasiunKe.setAdapter(stasiunAdapter);
@@ -197,11 +224,28 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
 
     @Override
     public void tiketDitemukan(List<Perjalanan> perjalanans) {
-        Toast.makeText(activity, "Tiket Ditemukan", Toast.LENGTH_SHORT).show();
+        for(int i=0;  i<perjalanans.size(); i++){
+            Boolean setStasiunAsal = false;
+            Boolean setStasiunTiba = false;
+            for(int j=0; j<stasiuns.size(); j++){
+                if(!(setStasiunAsal)){
+                    if(perjalanans.get(i).getLokasiBerangkatId() == stasiuns.get(j).getStasiunId()){
+                        perjalanans.get(i).setLokasiBerangkat(stasiuns.get(j));
+                        setStasiunAsal = true;
+                    }
+                }
+                if(!(setStasiunTiba)){
+                    if(perjalanans.get(i).getLokasiTibaId() == stasiuns.get(j).getStasiunId()){
+                        perjalanans.get(i).setLokasiTiba(stasiuns.get(j));
+                        setStasiunTiba = true;
+                    }
+                }
+                if(setStasiunAsal && setStasiunTiba) break;
+            }
+        }
         Intent intent = new Intent(activity, PilihTiketActivity.class);
-        intent.putExtra("listPerjalanan", (Serializable) perjalanans);
-        startActivity(intent);
-        activity.finish();
+        intent.putExtra("perjalanans", (Serializable) perjalanans);
+        startActivityForResult(intent, LAUNCH_PILIH_TIKET_ACTIVITY);
     }
 
     @Override
@@ -214,4 +258,16 @@ public class CariTiketFragment extends BaseFragment<CariTiketActivity, CariTiket
         mPresenter = presenter;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == LAUNCH_PILIH_TIKET_ACTIVITY){
+            if(resultCode == activity.RESULT_OK){
+                if(data.getBooleanExtra("logout", false) == true){
+                    mPresenter.logout();
+                }
+            }
+        }
+    }
 }

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".modul.login.LoginActivity" />
+        <activity android:name=".modul.register.RegisterActivity" />
         <activity android:name=".modul.caritiket.CariTiketActivity" />
         <activity android:name=".modul.pilihtiket.PilihTiketActivity" />
         <activity android:name=".modul.inputpesanan.InputPesananActivity" />
